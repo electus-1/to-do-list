@@ -1,0 +1,39 @@
+:root {
+  --sidebar-color: #d8d9da;
+}
+ul {
+  margin: 0;
+}
+
+#sidebar {
+  background-color: var(--sidebar-color);
+  width: 20%;
+  margin: 0;
+}
+
+#nav-links {
+  list-style-type: none;
+  position: relative;
+  top: 12px;
+  margin-left: 12px;
+  display: grid;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 60%;
+  background-color: var(--sidebar-color);
+}
+
+.nav-link:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  filter: brightness(96%);
+}
+
+.nav-link-img {
+  width: 30px;
+  aspect-ratio: 1 / 1;
+}

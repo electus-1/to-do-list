@@ -1,0 +1,26 @@
+:root {
+  --header-color: #61677a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  width: 100%;
+  background-color: var(--header-color);
+  padding: 24px 0 24px;
+  display: flex;
+  align-items: center;
+}
+
+#header-title {
+  margin: 0;
+}
+
+#header-img {
+  height: 75px;
+  aspect-ratio: 1 / 1;
+  margin-left: 24px;
+}
