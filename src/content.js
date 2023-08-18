@@ -9,6 +9,7 @@ export default function contentComp() {
   content.style.display = "flex";
   content.style.justifyContent = "center";
   content.style.alignItems = "center";
+  content.style.backgroundColor = "black";
   content.style.position = "absolute";
   content.style.left = `${sidebarWidth}px`;
   content.style.top = `${headerHeight}px`;

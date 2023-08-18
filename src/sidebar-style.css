@@ -7,24 +7,31 @@ ul {
 
 #sidebar {
   background-color: var(--sidebar-color);
-  width: 20%;
   margin: 0;
+  padding: 0;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 50px;
 }
 
 #nav-links {
   list-style-type: none;
-  position: relative;
-  top: 12px;
-  margin-left: 12px;
-  display: grid;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 60%;
+  gap: 10%;
   background-color: var(--sidebar-color);
+  font-size: 1rem;
+  width: 60%;
 }
 
 .nav-link:hover {
@@ -36,4 +43,51 @@ ul {
 .nav-link-img {
   width: 30px;
   aspect-ratio: 1 / 1;
+}
+
+#addButton {
+  border: 0;
+  background-color: transparent;
+  display: block;
+  margin: 0 auto;
+  margin-top: 24px;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+
+#addButton > img {
+  max-width: 100%;
+}
+
+#addButton:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  width: 250px;
+  font-size: 1rem;
+  border-radius: 64px;
+}
+
+#addNewGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  background-color: var(--sidebar-color);
+}
+
+#addNewGroup:hover {
+  transform: translateY(-4px);
+  cursor: pointer;
+  filter: brightness(96%);
+}
+#addNewGroup > img {
+  max-width: 32px;
+  max-height: 32px;
+  flex: 0 0 1;
+}
+
+#addNewGroup > p {
+  font-size: 1rem;
 }

@@ -5,16 +5,23 @@ import weekImg from "./img/week.png";
 import completedImg from "./img/completed.png";
 import failedImg from "./img/failed.png";
 
+import addButton from "./addButton";
+import addNewGroup from "./addNewGroup";
+
 const navImages = [homeImg, todayImg, weekImg, completedImg, failedImg];
 const navTexts = ["Home", "Today", "This Week", "Completed", "Failed"];
 
 export default function sidebarComp() {
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar";
-  sidebar.style.height = `${
+  sidebar.style.maxHeight = `${
     document.querySelector("html").scrollHeight -
     document.querySelector("#header").offsetHeight
   }px`;
+  sidebar.style.minHeight = sidebar.style.maxHeight;
+
+  const add = addButton();
+  sidebar.appendChild(add);
 
   const navLinks = document.createElement("ul");
   navLinks.id = "nav-links";
@@ -26,6 +33,9 @@ export default function sidebarComp() {
   });
 
   sidebar.appendChild(navLinks);
+
+  const groupSection = addNewGroup();
+  sidebar.appendChild(groupSection);
 
   return sidebar;
 }
