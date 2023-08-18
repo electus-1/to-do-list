@@ -6,7 +6,7 @@ import completedImg from "./img/completed.png";
 import failedImg from "./img/failed.png";
 
 import addButton from "./addButton";
-import addGroupSection from "./groupSection";
+import { groupSection, renderGroups } from "./groupSection";
 
 const navImages = [homeImg, todayImg, weekImg, completedImg, failedImg];
 const navTexts = ["Home", "Today", "This Week", "Completed", "Failed"];
@@ -34,8 +34,8 @@ export default function sidebarComp() {
 
   sidebar.appendChild(navLinks);
 
-  const groupSection = addGroupSection();
-  sidebar.appendChild(groupSection);
+  const group = groupSection();
+  sidebar.appendChild(group);
 
   return sidebar;
 }

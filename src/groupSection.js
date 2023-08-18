@@ -1,6 +1,7 @@
 import addNewGroupButton from "./addNewGroupButton";
+import { getGroups } from "./controller";
 
-export default function groupSection() {
+function groupSection() {
   const groupSection = document.createElement("div");
   groupSection.id = "groupSection";
 
@@ -13,9 +14,41 @@ export default function groupSection() {
   const addNewGroupBtn = addNewGroupButton();
   groupSection.appendChild(addNewGroupBtn);
 
-  const groups = document.createElement("div");
-  groups.id = "groups";
-  groupSection.appendChild(groups);
+  const groupsContainer = document.createElement("div");
+  groupsContainer.id = "groups";
+  groupSection.appendChild(groupsContainer);
+
+  const groups = getGroups();
+  if (groups !== null) {
+    groups.forEach((groupName) =>
+      groupsContainer.appendChild(group(groupName))
+    );
+  }
 
   return groupSection;
 }
+
+function renderGroups() {
+  const groups = getGroups();
+  if (groups !== null) {
+    const groupContainer = document.querySelector("#groups");
+    if (groupContainer !== null) {
+      groupContainer.childNodes.forEach((child) => child.remove());
+      groups.forEach((groupName) => {
+        groupContainer.appendChild(group(groupName));
+      });
+    }
+  }
+}
+
+function group(groupName) {
+  const group = document.createElement("div");
+  groupName = groupName.toLowerCase();
+  group.textContent = `// ${
+    groupName.charAt(0).toUpperCase() + groupName.slice(1)
+  }`;
+  group.classList.add("group");
+  return group;
+}
+
+export { groupSection, renderGroups };

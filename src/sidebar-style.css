@@ -1,5 +1,6 @@
 :root {
   --sidebar-color: #d8d9da;
+  font-size: 17px;
 }
 ul {
   margin: 0;
@@ -14,7 +15,8 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 50px;
+  gap: 30px;
+  overflow-y: scroll;
 }
 
 #nav-links {
@@ -31,7 +33,7 @@ ul {
   align-items: center;
   gap: 10%;
   background-color: var(--sidebar-color);
-  font-size: 1rem;
+  font-size: 1.2rem;
   width: 60%;
 }
 
@@ -40,7 +42,9 @@ ul {
   cursor: pointer;
   filter: brightness(96%);
 }
-
+.nav-link:active {
+  transform: translateY(4px);
+}
 .nav-link-img {
   width: 30px;
   aspect-ratio: 1 / 1;
@@ -66,8 +70,12 @@ ul {
   color: white;
   cursor: pointer;
   width: 250px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border-radius: 64px;
+}
+
+#addButton:active {
+  transform: translateY(4px);
 }
 
 #addNewGroup {
@@ -90,12 +98,25 @@ ul {
 }
 
 #addNewGroup > p {
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+#groupSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 #groupSectionTitle {
-  margin: initial 0;
+  font-size: 2rem;
+  margin: 0;
   padding: 0;
+  align-self: start;
+  position: relative;
+  left: 50px;
 }
 
 #groups {
@@ -104,19 +125,48 @@ ul {
   justify-content: center;
   gap: 10px;
   align-items: center;
+  width: 100%;
 }
 
 .group {
+  font-size: 1.2rem;
   width: 60%;
   background-color: var(--sidebar-color);
+  text-align: center;
 }
 
 .group:hover {
   filter: brightness(96%);
   cursor: pointer;
+  transform: scale(1.1);
 }
-
+.group:active {
+  transform: translateY(4px);
+}
 #groupSection {
   margin: initial 0;
   padding: 0;
+}
+
+#group-form {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+#group-form > input {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#group-form > button:first-of-type {
+  grid-row-start: 2;
+}
+
+#group-form > button:last-of-type {
+  grid-row-start: 2;
+  grid-column-start: 2;
 }
