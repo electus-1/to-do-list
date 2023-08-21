@@ -1,4 +1,5 @@
 import addImage from "./img/addTODO.png";
+import addTodoWindow from "./addTodoWindow";
 
 export default function addButton() {
   const addButton = document.createElement("button");
@@ -17,6 +18,12 @@ export default function addButton() {
   addButton.addEventListener("mouseleave", (e) => {
     addButton.textContent = "";
     addButton.appendChild(addButtonImg);
+  });
+
+  addButton.addEventListener("click", (e) => {
+    const modal = document.querySelector("#modal");
+    modal.style.display = "flex";
+    modal.appendChild(addTodoWindow(modal));
   });
   return addButton;
 }
