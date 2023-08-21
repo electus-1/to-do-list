@@ -28,7 +28,9 @@ export default function groupForm() {
 
   confirmAddGroupButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const valid = createGroup(groupInput.value);
+    let value = groupInput.value;
+    value = value.toLowerCase();
+    const valid = createGroup(value);
     if (valid) {
       renderGroups();
       switchBetweenFormNButton(form);

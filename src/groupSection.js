@@ -1,5 +1,5 @@
 import addNewGroupButton from "./addNewGroupButton";
-import { getGroups } from "./controller";
+import { getGroups, removeGroup } from "./controller";
 
 function groupSection() {
   const groupSection = document.createElement("div");
@@ -31,9 +31,8 @@ function groupSection() {
 function renderGroups() {
   const groups = getGroups();
   if (groups !== null) {
-    const groupContainer = document.querySelector("#groups");
+    const groupContainer = clearGroups();
     if (groupContainer !== null) {
-      groupContainer.childNodes.forEach((child) => child.remove());
       groups.forEach((groupName) => {
         groupContainer.appendChild(group(groupName));
       });
@@ -43,12 +42,36 @@ function renderGroups() {
 
 function group(groupName) {
   const group = document.createElement("div");
-  groupName = groupName.toLowerCase();
-  group.textContent = `// ${
+  group.classList.add("group");
+
+  const groupText = document.createElement("p");
+  groupText.textContent = `// ${
     groupName.charAt(0).toUpperCase() + groupName.slice(1)
   }`;
-  group.classList.add("group");
+
+  group.appendChild(groupText);
+
+  const closeButton = document.createElement("span");
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = "&times;";
+  group.appendChild(closeButton);
+
+  closeButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (removeGroup(groupName)) {
+      renderGroups();
+    }
+  });
   return group;
+}
+
+function clearGroups() {
+  const groupContainer = document.querySelector("#groups");
+  if (groupContainer !== null) {
+    groupContainer.childNodes.forEach((child) => child.remove());
+    return groupContainer;
+  }
+  return null;
 }
 
 export { groupSection, renderGroups };

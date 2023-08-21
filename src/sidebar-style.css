@@ -16,7 +16,7 @@ ul {
   align-items: center;
   justify-content: flex-start;
   gap: 30px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #nav-links {
@@ -132,7 +132,9 @@ ul {
   font-size: 1.2rem;
   width: 60%;
   background-color: var(--sidebar-color);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .group:hover {
@@ -143,6 +145,23 @@ ul {
 .group:active {
   transform: translateY(4px);
 }
+
+.group > p {
+  margin: 0;
+  padding: 0;
+}
+
+.close-button {
+  font-size: 1.5rem;
+  color: black;
+  position: absolute;
+  right: 10px;
+}
+.close-button:hover {
+  color: red;
+  cursor: progress;
+}
+
 #groupSection {
   margin: initial 0;
   padding: 0;
