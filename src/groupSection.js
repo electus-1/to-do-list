@@ -62,6 +62,14 @@ function group(groupName) {
       renderGroups();
     }
   });
+
+  group.addEventListener("mouseover", (e) => {
+    closeButton.style.visibility = "visible";
+  });
+
+  group.addEventListener("mouseleave", (e) => {
+    closeButton.style.visibility = "hidden";
+  });
   return group;
 }
 

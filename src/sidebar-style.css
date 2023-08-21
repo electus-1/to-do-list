@@ -135,6 +135,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .group:hover {
@@ -152,6 +153,7 @@ ul {
 }
 
 .close-button {
+  visibility: hidden;
   font-size: 1.5rem;
   color: black;
   position: absolute;
