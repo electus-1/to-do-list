@@ -12,9 +12,106 @@
 }
 
 #add-todo-window {
-  border: 1px solid black;
+  border-radius: 16px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  gap: 24px;
+  padding: 24px;
+}
+
+#add-todo-bg {
+  position: absolute;
+  z-index: -1;
+  max-height: 150%;
+  max-width: auto;
+}
+
+textarea {
+  resize: none;
+}
+
+.close {
+  font-size: 1.5rem;
+  color: black;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.close:hover {
+  color: red;
+  cursor: pointer;
+}
+
+input[type="date"]:hover,
+input[type="radio"]:hover,
+select:hover {
+  cursor: pointer;
+}
+
+#priority-container {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.priority {
+  max-width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.priority > input {
+  margin: 0;
+}
+
+#title-input {
+  width: 90%;
+}
+
+#desc-input {
+  width: 90%;
+}
+
+#date-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+#group-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+#submit-todo {
+  border-radius: 32px;
+  outline: none;
+  background-color: red;
+  border-color: red;
+  width: 50%;
+  height: min-content;
+  font-size: 1.5rem;
+  color: white;
+}
+
+#submit-todo:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1.1);
+  transition: 0.07s;
+}
+
+#submit-todo:active {
+  transform: translateY(4px);
+  filter: brightness(85%);
+  transition: 0.07s;
 }

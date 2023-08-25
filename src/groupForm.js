@@ -26,10 +26,18 @@ export default function groupForm() {
   cancelAddGroupButton.textContent = "Cancel";
   form.appendChild(cancelAddGroupButton);
 
-  confirmAddGroupButton.addEventListener("click", (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     let value = groupInput.value;
     value = value.toLowerCase();
+    if (value === "none" || value === "null") {
+      alert(
+        `"${
+          value.charAt(0).toUpperCase() + value.slice(1)
+        }" is not a valid group name.`
+      );
+      return;
+    }
     const valid = createGroup(value);
     if (valid) {
       renderGroups();

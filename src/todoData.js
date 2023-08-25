@@ -1,9 +1,10 @@
-export default function todoData(
+export default function newTodo(
   title,
   desc,
   priority,
   dateRegistered,
-  dueDate
+  dueDate,
+  group
 ) {
-  return { title, desc, priority, dateRegistered, dueDate };
+  return { title, desc, priority, dateRegistered, dueDate, group };
 }

@@ -72,10 +72,11 @@ ul {
   width: 250px;
   font-size: 1.5rem;
   border-radius: 64px;
+  transition: 0.1s;
 }
 
 #addButton:active {
-  transform: translateY(4px);
+  transform: translateY(10px);
 }
 
 #addNewGroup {
