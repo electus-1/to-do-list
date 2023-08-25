@@ -28,7 +28,7 @@ export default function sidebarComp() {
 
   navImages.forEach((image, index) => {
     navLinks.appendChild(
-      linkMaker(navTexts[index], iconMaker(image, listItemMaker()))
+      listItemMaker(linkMaker(navTexts[index], iconMaker(image, linkWrapper())))
     );
   });
 
@@ -50,14 +50,24 @@ function iconMaker(src, parent) {
 
 function linkMaker(text, parent) {
   const link = document.createElement("p");
+  if (text === "Home") {
+    parent.classList.add("selected");
+  }
   link.textContent = text;
   link.classList.add("nav-link-text");
   parent.appendChild(link);
   return parent;
 }
 
-function listItemMaker() {
+function linkWrapper() {
+  const linkWrapper = document.createElement("div");
+  linkWrapper.classList.add("nav-link-wrapper");
+  return linkWrapper;
+}
+
+function listItemMaker(wrapper) {
   const listItem = document.createElement("li");
   listItem.classList.add("nav-link");
+  listItem.appendChild(wrapper);
   return listItem;
 }

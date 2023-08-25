@@ -30,5 +30,10 @@ export default function todo(todoData) {
   dueDate.textContent = `Due Date: ${todoData.dueDate}`;
   todo.appendChild(dueDate);
 
+  const group = document.createElement("p");
+  group.classList.add("todo-group");
+  group.textContent = `Group: ${todoData.group}`;
+  todo.appendChild(group);
+
   return todo;
 }

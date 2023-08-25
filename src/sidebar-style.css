@@ -31,7 +31,6 @@ ul {
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 10%;
   background-color: var(--sidebar-color);
   font-size: 1.2rem;
   width: 60%;
@@ -41,10 +40,27 @@ ul {
   transform: scale(1.1);
   cursor: pointer;
   filter: brightness(96%);
+  transition: 0.07s;
 }
 .nav-link:active {
   transform: translateY(4px);
+  transition: 0.07s;
 }
+
+.nav-link-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: min-content;
+  gap: 10%;
+  margin-left: 24px;
+  white-space: nowrap;
+}
+
+.nav-link-wrapper.selected {
+  border-bottom: 1px solid black;
+}
+
 .nav-link-img {
   width: 30px;
   aspect-ratio: 1 / 1;
@@ -77,6 +93,7 @@ ul {
 
 #addButton:active {
   transform: translateY(10px);
+  transition: 0.07s;
 }
 
 #addNewGroup {
@@ -91,6 +108,7 @@ ul {
   transform: translateY(-4px);
   cursor: pointer;
   filter: brightness(96%);
+  transition: 0.07s;
 }
 #addNewGroup > img {
   max-width: 32px;
@@ -143,9 +161,11 @@ ul {
   filter: brightness(96%);
   cursor: pointer;
   transform: scale(1.1);
+  transition: 0.07s;
 }
 .group:active {
   transform: translateY(4px);
+  transition: 0.07s;
 }
 
 .group > p {
@@ -163,6 +183,7 @@ ul {
 .close-button:hover {
   color: red;
   cursor: progress;
+  transition: 0.07s;
 }
 
 #groupSection {
