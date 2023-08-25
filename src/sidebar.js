@@ -10,6 +10,13 @@ import { groupSection, renderGroups } from "./groupSection";
 
 const navImages = [homeImg, todayImg, weekImg, completedImg, failedImg];
 const navTexts = ["Home", "Today", "This Week", "Completed", "Failed"];
+const nav = Object.freeze({
+  HOME: "home",
+  TODAY: "today",
+  WEEK: "week",
+  COMPLETED: "completed",
+  FAILED: "failed",
+});
 
 export default function sidebarComp() {
   const sidebar = document.createElement("div");
@@ -37,6 +44,13 @@ export default function sidebarComp() {
   const group = groupSection();
   sidebar.appendChild(group);
 
+  const keys = Object.keys(nav);
+  let index = 0;
+  navLinks.childNodes.forEach((_listItem) => {
+    _listItem.setAttribute("data-nav", keys[index]);
+    index = index + 1;
+  });
+
   return sidebar;
 }
 
@@ -52,6 +66,7 @@ function linkMaker(text, parent) {
   const link = document.createElement("p");
   if (text === "Home") {
     parent.classList.add("selected");
+    parent.style.borderBottom = "2px solid black";
   }
   link.textContent = text;
   link.classList.add("nav-link-text");
@@ -69,5 +84,35 @@ function listItemMaker(wrapper) {
   const listItem = document.createElement("li");
   listItem.classList.add("nav-link");
   listItem.appendChild(wrapper);
+
+  listItem.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const selected = document.querySelector(".selected");
+    selected.style.borderBottomWidth = "0px";
+    selected.classList.remove("selected");
+    wrapper.classList.add("selected");
+    wrapper.style.borderBottom = "2px solid black";
+  });
+
+  listItem.addEventListener("mouseenter", (e) => {
+    const previous = listItem.previousElementSibling;
+    if (previous === null) {
+      return;
+    }
+    if (previous.firstChild.classList.contains("selected")) {
+      previous.firstChild.style.borderBottomWidth = "5px";
+    }
+  });
+
+  listItem.addEventListener("mouseleave", (e) => {
+    const previous = listItem.previousElementSibling;
+    if (previous === null) {
+      return;
+    }
+    if (previous.firstChild.classList.contains("selected")) {
+      previous.firstChild.style.borderBottomWidth = "2px";
+    }
+  });
   return listItem;
 }

@@ -1,1 +1,3 @@
-export default function navigator() {}
+function navigator(navigateTo) {}
+
+export { navigator };
