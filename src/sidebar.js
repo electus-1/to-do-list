@@ -7,16 +7,10 @@ import failedImg from "./img/failed.png";
 
 import addButton from "./addButton";
 import { groupSection, renderGroups } from "./groupSection";
+import { navigateTo, nav } from "./navigator";
 
 const navImages = [homeImg, todayImg, weekImg, completedImg, failedImg];
 const navTexts = ["Home", "Today", "This Week", "Completed", "Failed"];
-const nav = Object.freeze({
-  HOME: "home",
-  TODAY: "today",
-  WEEK: "week",
-  COMPLETED: "completed",
-  FAILED: "failed",
-});
 
 export default function sidebarComp() {
   const sidebar = document.createElement("div");
@@ -89,10 +83,15 @@ function listItemMaker(wrapper) {
     e.stopPropagation();
     e.preventDefault();
     const selected = document.querySelector(".selected");
+    if (selected === wrapper) {
+      return;
+    }
     selected.style.borderBottomWidth = "0px";
     selected.classList.remove("selected");
     wrapper.classList.add("selected");
     wrapper.style.borderBottom = "2px solid black";
+
+    navigateTo(listItem.getAttribute("data-nav"));
   });
 
   listItem.addEventListener("mouseenter", (e) => {

@@ -1,9 +1,22 @@
-import notePage from "./img/notepage.png";
+import notePageTop from "./img/notepage-top.png";
+import notePageBottom from "./img/notepage-bottom.png";
 
-export default function todo(todoData) {
+export default function generateTodo(todoData) {
+  const todoContainer = document.createElement("div");
+  todoContainer.classList.add("todo-container");
+
+  const topImage = document.createElement("img");
+  topImage.src = notePageTop;
+  topImage.classList.add("todo-top-img");
+  todoContainer.appendChild(topImage);
+
   const todo = document.createElement("div");
   todo.classList.add("todo");
-  todo.style.backgroundImage = notePage;
+
+  const bgImage = document.createElement("img");
+  bgImage.src = notePageBottom;
+  bgImage.classList.add("todo-bottom-img");
+  todo.appendChild(bgImage);
 
   const title = document.createElement("h2");
   title.classList.add("todo-title");
@@ -26,7 +39,7 @@ export default function todo(todoData) {
   todo.appendChild(dateRegistered);
 
   const dueDate = document.createElement("p");
-  dateRegistered.classList.add("dueDate");
+  dueDate.classList.add("dueDate");
   dueDate.textContent = `Due Date: ${todoData.dueDate}`;
   todo.appendChild(dueDate);
 
@@ -35,5 +48,7 @@ export default function todo(todoData) {
   group.textContent = `Group: ${todoData.group}`;
   todo.appendChild(group);
 
-  return todo;
+  todoContainer.appendChild(todo);
+
+  return todoContainer;
 }

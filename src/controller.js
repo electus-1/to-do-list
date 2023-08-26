@@ -67,4 +67,32 @@ function createTodo(title, desc, priority, dueDate, group) {
   localStorage.setItem("todos", JSON.stringify(todos));
   return true;
 }
-export { createGroup, getGroups, removeGroup, createTodo };
+
+function getHome() {
+  let todos = localStorage.getItem("todos");
+  if (todos === null) {
+    return null;
+  } else {
+    todos = JSON.parse(todos);
+  }
+  return todos;
+}
+
+function filterToday() {}
+
+function filterWeek() {}
+
+function filterCompleted() {}
+
+function filterFailed() {}
+export {
+  createGroup,
+  getGroups,
+  removeGroup,
+  createTodo,
+  getHome,
+  filterToday,
+  filterWeek,
+  filterCompleted,
+  filterFailed,
+};
