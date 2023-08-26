@@ -1,4 +1,4 @@
-import { getToday, isDatePassed } from "./date";
+import { convertToDateObject, getToday, isDatePassed } from "./date";
 import newTodo from "./todoData";
 
 function createGroup(groupName) {
@@ -55,7 +55,23 @@ function createTodo(title, desc, priority, dueDate, group) {
   if (group.toLowerCase() == "none") {
     group = null;
   }
-  const todo = newTodo(title, desc, priority, dateRegistered, dueDate, group);
+  const id = localStorage.getItem("id");
+  if (id === null) {
+    id = 0;
+  } else {
+    id = +id + 1;
+  }
+  const todo = newTodo(
+    title,
+    desc,
+    priority,
+    dateRegistered,
+    dueDate,
+    group,
+    id,
+    "no"
+  );
+  localStorage.setItem("id", id);
 
   let todos = localStorage.getItem("todos");
   if (todos === null) {
@@ -72,19 +88,55 @@ function getHome() {
   let todos = localStorage.getItem("todos");
   if (todos === null) {
     return null;
-  } else {
-    todos = JSON.parse(todos);
   }
+  todos = JSON.parse(todos);
+
   return todos;
 }
 
-function filterToday() {}
+function filterToday() {
+  const todos = getHome();
+  if (todos === null) {
+    return null;
+  }
+  return todos.filter((todo) => {
+    return todo.dueDate === getToday();
+  });
+}
 
-function filterWeek() {}
+function filterWeek() {
+  const todos = getHome();
+  if (todos === null) {
+    return null;
+  }
+  return todos.filter((todo) => {
+    const dueDate = convertToDateObject(todo.dueDate).getTime();
+    const today = new Date().getTime();
+    const difference = (dueDate - today) / (1000 * 3600 * 24);
+    console.log(difference);
+    return difference > 0 && difference < 8;
+  });
+}
 
-function filterCompleted() {}
+function filterCompleted() {
+  const todos = getHome();
+  if (todos === null) {
+    return null;
+  }
+  return todos.filter((todo) => {
+    return todo.completed === "yes";
+  });
+}
 
-function filterFailed() {}
+function filterFailed() {
+  const todos = getHome();
+  if (todos === null) {
+    return null;
+  }
+  return todos.filter((todo) => {
+    return todo.completed === "failed";
+  });
+}
 export {
   createGroup,
   getGroups,

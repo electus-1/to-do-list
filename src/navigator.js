@@ -1,18 +1,25 @@
-import home from "./home";
+import {
+  filterCompleted,
+  filterFailed,
+  filterToday,
+  filterWeek,
+  getHome,
+} from "./controller";
+import generateContent from "./generateTodo";
 
 const nav = Object.freeze({
-  HOME: home,
-  TODAY: null,
-  WEEK: null,
-  COMPLETED: null,
-  FAILED: null,
+  HOME: getHome,
+  TODAY: filterToday,
+  WEEK: filterWeek,
+  COMPLETED: filterCompleted,
+  FAILED: filterFailed,
 });
 function navigateTo(navigateTo) {
   const content = document.querySelector("#content");
   if (content.firstChild !== null) {
     content.firstChild.remove();
   }
-  content.appendChild(nav[navigateTo]());
+  content.appendChild(generateContent(nav[navigateTo]));
 }
 
 export { navigateTo, nav };

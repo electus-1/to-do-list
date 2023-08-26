@@ -4,7 +4,18 @@ export default function newTodo(
   priority,
   dateRegistered,
   dueDate,
-  group
+  group,
+  id,
+  completed
 ) {
-  return { title, desc, priority, dateRegistered, dueDate, group };
+  return {
+    title,
+    desc,
+    priority,
+    dateRegistered,
+    dueDate,
+    group,
+    id,
+    completed,
+  };
 }

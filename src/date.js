@@ -28,7 +28,7 @@ function convertToDateObject(dateString) {
   const dateArray = dateString.split("-");
   const newDate = new Date();
   newDate.setFullYear(+dateArray[0]);
-  newDate.setMonth(+dateArray[1]);
+  newDate.setMonth(+dateArray[1] - 1);
   newDate.setDate(+dateArray[2]);
   return newDate;
 }
@@ -58,4 +58,4 @@ function isDatePassed(minLimit, beingChecked) {
   return false;
 }
 
-export { getToday, getTomorrow, isDatePassed };
+export { getToday, getTomorrow, isDatePassed, convertToDateObject };
