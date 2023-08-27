@@ -55,7 +55,7 @@ function createTodo(title, desc, priority, dueDate, group) {
   if (group.toLowerCase() == "none") {
     group = null;
   }
-  const id = localStorage.getItem("id");
+  let id = localStorage.getItem("id");
   if (id === null) {
     id = 0;
   } else {
@@ -137,6 +137,16 @@ function filterFailed() {
     return todo.completed === "failed";
   });
 }
+
+function filterGroup(groupName) {
+  const todos = getHome();
+  if (todos === null) {
+    return null;
+  }
+  return todos.filter((todo) => {
+    return todo.group.toLowerCase() === groupName.toLowerCase();
+  });
+}
 export {
   createGroup,
   getGroups,
@@ -147,4 +157,5 @@ export {
   filterWeek,
   filterCompleted,
   filterFailed,
+  filterGroup,
 };

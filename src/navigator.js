@@ -1,6 +1,7 @@
 import {
   filterCompleted,
   filterFailed,
+  filterGroup,
   filterToday,
   filterWeek,
   getHome,
@@ -13,11 +14,17 @@ const nav = Object.freeze({
   WEEK: filterWeek,
   COMPLETED: filterCompleted,
   FAILED: filterFailed,
+  GROUP: filterGroup,
 });
-function navigateTo(navigateTo) {
+function navigateTo(navigateTo, groupName) {
   const content = document.querySelector("#content");
   if (content.firstChild !== null) {
     content.firstChild.remove();
+  }
+
+  if (navigateTo === "GROUP") {
+    content.appendChild(generateContent(nav[navigateTo], groupName));
+    return;
   }
   content.appendChild(generateContent(nav[navigateTo]));
 }

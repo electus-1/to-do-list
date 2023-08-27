@@ -1,7 +1,7 @@
 import generateTodo from "./todo";
-export default function generateContent(filterFunction) {
+export default function generateContent(filterFunction, optArg) {
   const content = document.createElement("div");
-  const todos = filterFunction();
+  const todos = filterFunction(optArg);
   if (todos === null) {
     return content;
   }
