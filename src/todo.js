@@ -1,5 +1,6 @@
 import notePageTop from "./img/notepage-top.png";
 import notePageBottom from "./img/notepage-bottom.png";
+import editTodoWindow from "./editTodoWindow";
 
 export default function generateTodo(todoData) {
   const todoContainer = document.createElement("div");
@@ -49,6 +50,12 @@ export default function generateTodo(todoData) {
   todo.appendChild(group);
 
   todoContainer.appendChild(todo);
+
+  todoContainer.addEventListener("click", (e) => {
+    const modal = document.querySelector("#modal");
+    modal.style.display = "flex";
+    modal.appendChild(editTodoWindow(modal, todoData));
+  });
 
   return todoContainer;
 }

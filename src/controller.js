@@ -84,6 +84,39 @@ function createTodo(title, desc, priority, dueDate, group) {
   return true;
 }
 
+function editTodo(id, title, desc, priority, dueDate, group, completed) {
+  if (title.length < 3 || title.length > 32) {
+    return false;
+  }
+  if (desc === "") {
+    desc = null;
+  }
+  const dateRegistered = getToday();
+  if (isDatePassed(dateRegistered, dueDate)) {
+    return false;
+  }
+  if (group.toLowerCase() == "none") {
+    group = null;
+  }
+  let todos = JSON.parse(localStorage.getItem("todos"));
+  todos.forEach((todo, index) => {
+    if (todo.id === id) {
+      todos[index] = newTodo(
+        title,
+        desc,
+        priority,
+        dateRegistered,
+        dueDate,
+        group,
+        id,
+        completed
+      );
+    }
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
+  return true;
+}
+
 function getHome() {
   let todos = localStorage.getItem("todos");
   if (todos === null) {
@@ -114,7 +147,7 @@ function filterWeek() {
     const today = new Date().getTime();
     const difference = (dueDate - today) / (1000 * 3600 * 24);
     console.log(difference);
-    return difference > 0 && difference < 8;
+    return difference > -1 && difference < 8;
   });
 }
 
@@ -158,4 +191,5 @@ export {
   filterCompleted,
   filterFailed,
   filterGroup,
+  editTodo,
 };
