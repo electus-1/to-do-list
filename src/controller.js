@@ -117,7 +117,27 @@ function editTodo(id, title, desc, priority, dueDate, group, completed) {
   return true;
 }
 
-function getHome() {
+function deleteTodo(id) {
+  const todos = getTodos();
+  todos.forEach((todo, index) => {
+    if (todo.id === id) {
+      todos.splice(index, 1);
+    }
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function toggleComplete(id) {
+  const todos = getTodos();
+  todos.forEach((todo, index) => {
+    if (todo.id === id) {
+      todo.completed = "yes";
+    }
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getTodos() {
   let todos = localStorage.getItem("todos");
   if (todos === null) {
     return null;
@@ -127,8 +147,12 @@ function getHome() {
   return todos;
 }
 
+function getHome() {
+  return getTodos();
+}
+
 function filterToday() {
-  const todos = getHome();
+  const todos = getTodos();
   if (todos === null) {
     return null;
   }
@@ -138,7 +162,7 @@ function filterToday() {
 }
 
 function filterWeek() {
-  const todos = getHome();
+  const todos = getTodos();
   if (todos === null) {
     return null;
   }
@@ -152,7 +176,7 @@ function filterWeek() {
 }
 
 function filterCompleted() {
-  const todos = getHome();
+  const todos = getTodos();
   if (todos === null) {
     return null;
   }
@@ -162,7 +186,7 @@ function filterCompleted() {
 }
 
 function filterFailed() {
-  const todos = getHome();
+  const todos = getTodos();
   if (todos === null) {
     return null;
   }
@@ -172,7 +196,7 @@ function filterFailed() {
 }
 
 function filterGroup(groupName) {
-  const todos = getHome();
+  const todos = getTodos();
   if (todos === null) {
     return null;
   }
@@ -185,6 +209,8 @@ export {
   getGroups,
   removeGroup,
   createTodo,
+  toggleComplete,
+  deleteTodo,
   getHome,
   filterToday,
   filterWeek,

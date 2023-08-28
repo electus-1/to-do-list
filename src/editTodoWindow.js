@@ -1,6 +1,7 @@
 import baseTodoWindow from "./baseTodoWindow";
-import { editTodo } from "./controller";
+import { editTodo, deleteTodo, toggleComplete } from "./controller";
 import { isDatePassed, getToday } from "./date";
+import confirmDialogue from "./confirmDialogue";
 
 export default function editTodoWindow(modal, todoData) {
   const window = baseTodoWindow(modal);
@@ -15,16 +16,38 @@ export default function editTodoWindow(modal, todoData) {
   if (!isDatePassed(getToday(), todoData.dueDate)) {
     window.querySelector("#date").value = todoData.dueDate;
   }
+  const groupSelector = window.querySelector("#group-select-input");
+  groupSelector.querySelectorAll("option").forEach((option) => {
+    if (option.value === todoData.group) {
+      groupSelector.value = option.value;
+    }
+  });
   window.querySelector("#submit-todo").textContent = "Edit";
 
   const deleteButton = document.createElement("button");
+  deleteButton.type = "button";
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("todo-button");
+  deleteButton.id = "delete-todo";
+  window.appendChild(deleteButton);
+
+  const toggleCompleteButton = document.createElement("button");
+  toggleCompleteButton.type = "button";
+  const completed = todoData.completed;
+  if (completed === "no") {
+    toggleCompleteButton.textContent = "Mark Completed";
+  } else {
+    toggleCompleteButton.textContent = "Mark Uncompleted";
+  }
+  toggleCompleteButton.classList.add("todo-button");
+  toggleCompleteButton.id = "toggle-complete-todo";
+  window.appendChild(toggleCompleteButton);
 
   window.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = titleInput.value;
     const desc = descInput.value;
     let priority = null;
-
     document
       .querySelector("#priority-container")
       .querySelectorAll('input[name="priority"]')
@@ -35,7 +58,6 @@ export default function editTodoWindow(modal, todoData) {
       });
     const datePicker = document.querySelector("#date");
     const dueDate = datePicker.value;
-    const groupSelector = document.querySelector("#group-select-input");
     const selectedGroup = groupSelector.value;
 
     const valid = editTodo(
@@ -51,6 +73,20 @@ export default function editTodoWindow(modal, todoData) {
       modal.style.display = "none";
       modal.removeChild(window);
     }
+  });
+
+  deleteButton.addEventListener("click", (e) => {
+    confirmDialogue(modal, "delete the todo", window, deleteTodo, todoData.id);
+  });
+
+  toggleCompleteButton.addEventListener("click", (e) => {
+    confirmDialogue(
+      modal,
+      "mark todo as complete",
+      window,
+      toggleComplete,
+      todoData.id
+    );
   });
 
   return window;

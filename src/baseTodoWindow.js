@@ -95,6 +95,7 @@ export default function baseTodoWindow(modal) {
   submitButton.type = "submit";
   submitButton.textContent = "Create";
   submitButton.id = "submit-todo";
+  submitButton.classList.add("todo-button");
 
   window.appendChild(submitButton);
 

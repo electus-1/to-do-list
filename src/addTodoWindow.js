@@ -2,7 +2,7 @@ import baseTodoWindow from "./baseTodoWindow";
 import { createTodo } from "./controller";
 
 export default function addTodoWindow(modal) {
-  const window = baseTodoWindow();
+  const window = baseTodoWindow(modal);
   window.addEventListener("submit", (e) => {
     e.preventDefault();
     const titleInput = window.querySelector("#title-input");
